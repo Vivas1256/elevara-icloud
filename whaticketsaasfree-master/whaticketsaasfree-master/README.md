@@ -1,10 +1,4 @@
-# WhaTicket Versão Saas com Módulo Kanban, Modo Noturno e as seguintes integrações:</br>
-
-🗣️ DialogFlow</br>
-🔄 N8N</br>
-🌐 WebHooks</br>
-🤖 TypeBot</br>
-💬 ChatGPT</br>
+elevaracrm prueba subida
 
 Sugestão de VPS:
 
