@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Atualizando o CRm, por favor aguarde."
+echo "Atualizando o CRm, por favor espere."
 
 git pull
 cd backend
@@ -14,4 +14,4 @@ rm -rf build
 npm run build
 pm2 restart all
 
-echo "Actualización finalizada. Disfrutar!"
+echo "Actualización finalizada. Disfruta de las nuevas actualizaciones!"
