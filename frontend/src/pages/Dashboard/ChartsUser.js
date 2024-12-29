@@ -49,7 +49,7 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Gráfico de Conversas',
+            text: 'Gráfico de Conversaciones',
             position: 'left',
         },
         datalabels: {
@@ -101,7 +101,7 @@ export const ChatsUser = () => {
             const { data } = await api.get(`/dashboard/ticketsUsers?initialDate=${format(initialDate, 'yyyy-MM-dd')}&finalDate=${format(finalDate, 'yyyy-MM-dd')}&companyId=${companyId}`);
             setTicketsData(data);
         } catch (error) {
-            toast.error('Erro ao obter informações da conversa');
+            toast.error('Error al obtener información de la conversación');
         }
     }
 

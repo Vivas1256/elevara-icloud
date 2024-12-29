@@ -127,7 +127,7 @@ const SignUp = () => {
 	const [user] = useState(initialState);
 	const dueDate = moment().add(trial, "day").format();
 	const handleSignUp = async values => {
-		Object.assign(values, { recurrence: "MENSAL" });
+		Object.assign(values, { recurrence: "MENSUAL" });
 		Object.assign(values, { dueDate: dueDate });
 		Object.assign(values, { status: "t" });
 		Object.assign(values, { campaignsEnabled: true });
@@ -263,7 +263,7 @@ const SignUp = () => {
 										required
 									>
                                         <MenuItem value="disabled" disabled>
-                                        	<em>Selecione seu plano de assinatura</em>
+                                        	<em>Seleccione su plan de suscripción o active su demo</em>
 										</MenuItem>
 										{plans.map((plan, key) => (
 											<MenuItem key={key} value={plan.id}>

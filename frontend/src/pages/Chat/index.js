@@ -82,12 +82,12 @@ export function ChatModal({
   const handleSave = async () => {
     try {
       if (!title) {
-        alert("Por favor, preencha o título da conversa.");
+        alert("Por favor completa el título de la conversación..");
         return;
       }
 
       if (!users || users.length === 0) {
-        alert("Por favor, selecione pelo menos um usuário.");
+        alert("Por favor seleccione al menos un usuario.");
         return;
       }
 

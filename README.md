@@ -23,57 +23,21 @@ VPS 1000 G11: 4 vCores, 8 GB de RAM e 256 GB de SSD NVMe €5.75 Mensal.
 VPS 2000 G11: 8 vCores, 16 GB de RAM e 512 GB de SSD NVMe €12.60 USD Mensal.
 
 
-⚠️ Este diretório é uma cortesia da Launcher & Co. se você pagou por este acesso, foi enganado, recomendamos solicitar o estorno no seu cartão de crédito ou no seu banco.
 
+📅 13/12/2024 – Versión = 
 
-📅 13/12/2024 – Versão 5.5.0 = Versão Paga
+🛠️ Corrección al redimensionar el área de ticket</br> ✅ Validación de número en ContactModal</br> 🔄 Reversión de OpenAI a la versión 3.3.0 y wbotMessageListener.ts</br> 🎧 Audio en iPhone</br> 📵 Rechazo automático de llamadas</br> 📲 Conexiones de colas al solicitar un nuevo código QR</br> 📊 Dashboard reformulado</br> 📈 Página de informes</br> 🗂️ Kanban reformulado</br>
 
-🛠️ Correção ao redimensionar área de ticket</br>
-✅ Validação de número no ContactModal</br>
-🔄 Regressão OpenAI para versão 3.3.0 e wbotMessageListener.ts</br>
-🎧 Áudio no iPhone</br>
-📵 Recusando chamadas automaticamente</br>
-📲 Filas da conexão ao requisitar novo QR Code</br>
-📊 Dashboard reformulado</br>
-📈 Página de relatórios</br>
-🗂️ Kanban reformulado</br>
+📅 07/11/2024 – Versión 4.0
 
-📅 07/11/2024 – Versão 5.3.5
+📅 Corrección de la Fecha de Vencimiento en la Parte Superior: La fecha ahora permanece fija.</br> 🔄 Automatización en Grupos: No envía automatizaciones a grupos.</br> 🚫 Botón disableBot: Desactiva bots o automatizaciones.</br> ✉️ Corrección de Mensaje Citado.</br> 🔗 Permiso para Conexiones con el Mismo Nombre.</br> ⏳ Expiración de Conexiones: Desconexión automática tras el vencimiento de la empresa.</br> 🗑️ Selección para Eliminar Contactos: Opción de selección para eliminación en la página “Contactos”.</br> 🎵 Corrección en el Envío de Audio OGG en respuestas rápidas.</br> 📂 Visualización de Tickets Cerrados por Operador: Pestaña eliminada del panel de usuarios.</br> 📜 Visualización de Grupos por Operador: Pestaña eliminada del panel de usuarios.</br> 💸 Actualización Financiera tras Cambio de Plan: Valor ajustado automáticamente en la lista del Financiero.</br>
 
-📅 Correção da Data de Vencimento no Topo: Data agora permanece fixa. </br>
-🔄 Automação em Grupos: Não envia automações para grupos. </br>
-🚫 Botão disableBot: Desabilita bots ou automações. </br>
-✉️ Correção de Mensagem Citada. </br>
-🔗 Permissão para Conexões com Mesmo Nome. </br>
-⏳ Expiração de Conexões: Desconexão automática após vencimento da empresa. </br>
-🗑️ Seleção para Deletar Contatos: Opção de seleção para exclusão na página “Contatos”. </br>
-🎵 Correção no Envio de Áudio OGG em respostas rápidas. </br>
-📂 Visualização de Tickets Fechados por Operador: Aba removida do painel de usuários. </br>
-📜 Visualização de Grupos por Operador: Aba removida do painel de usuários. </br>
-💸 Atualização Financeira após Alteração de Plano: Valor ajustado automaticamente na lista do Financeiro. </br>
+📅 24/07/2024 – Versión 3.0 = 
 
-24/07/2024 – Versão 5.2.6 = Versão Gratuita
+✅ Cerrar todos los tickets abiertos o en espera.</br> 👍 Reaccionar a un mensaje.</br> 🔄 Reenviar mensajes a otro ticket.</br> 🎨 Apariencia del menú mejorada.</br> 🚪 Botón “Salir” añadido al menú.</br> 🗑️ Notificación cuando un mensaje es eliminado en WhatsApp, informando en el chat.</br> 🔄 API actualizada.</br> 🆕 Nuevo diseño de la página de inicio de sesión.</br> 💬 Indicación “Escribiendo” o “Grabando” aparece en el ticket, en la esquina inferior derecha, al lado del nombre.</br>
 
-✅ Fechar todos os tickets abertos ou em espera. </br>
-👍 Reagir a uma mensagem. </br>
-🔄 Encaminhar mensagens para outro ticket. </br>
-🎨 Aparência do menu aprimorada. </br>
-🚪 Botão “Sair” adicionado ao menu. </br>
-🗑️ Notificação quando uma mensagem é apagada no WhatsApp, informando no chat. </br>
-🔄 API atualizada. </br>
-🆕 Novo layout da página de login. </br>
-💬 Indicação “Digitando” ou “Gravando” aparece no ticket, no canto inferior direito, ao lado do nome. </br>
+📅 24/07/2024 – Versión 2.0 = 
 
-24/07/2024 – Versão 5.0.0 = Gratuita
+🛠️ Hicimos corrección en el Vcard</br> 🔄 Función para habilitar y deshabilitar nuevos registros</br> ⏳ Tiempo de Prueba disponible en el Panel</br> ⚡ Respuestas rápidas visualizadas por todos los usuarios</br> 📞 Los contactos ahora muestran si es un número válido y la hora de la última interacción</br> 👀 Ahora es posible ver el número que está conectado en Whaticket</br> 🔄 Botón para reiniciar conexiones añadido</br> 🎨 Cambiar logo desde el Panel</br> 🆕 Añadida nueva PESTAÑA Registrar Empresa</br> 📋 Añadir Opción Plan Interno</br>
 
-🛠️ Fizemos correção no Vcard </br>
-🔄 Função de habilitar e desabilitar novos registros</br>
-⏳ Tempo de Trial disponível no Painel</br>
-⚡ Respostas rápidas visualizadas por todos os usuários</br>
-📞 Contatos agora aparece se é um número ok e o horário da última interação</br>
-👀 Agora é possível ver o número que está conectado no Whaticket</br>
-🔄 Botão para reiniciar conexões adicionado</br>
-🎨 Alterar logo pelo Painel</br>
-🆕 Adicionado nova ABA Cadastrar Empresa</br>
-📋 Add Opção Plano Interno</br>
 

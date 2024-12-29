@@ -77,7 +77,7 @@ const SignUp = () => {
 	const [user] = useState(initialState);
 	const dueDate = moment().add(3, "day").format();
 	const handleSignUp = async values => {
-		Object.assign(values, { recurrence: "MENSAL" });
+		Object.assign(values, { recurrence: "MENSUAL" });
 		Object.assign(values, { dueDate: dueDate });
 		Object.assign(values, { status: "t" });
 		Object.assign(values, { campaignsEnabled: true });
@@ -138,7 +138,7 @@ const SignUp = () => {
 										variant="outlined"
 										fullWidth
 										id="name"
-										label="Nome da Empresa"
+										label="Nombre de Empresa"
 									/>
 								</Grid>
 
@@ -152,7 +152,7 @@ const SignUp = () => {
 										name="email"
 										error={touched.email && Boolean(errors.email)}
 										helperText={touched.email && errors.email}
-										autoComplete="email"
+										autoComplete="Email"
 										required
 									/>
 								</Grid>
@@ -170,14 +170,14 @@ const SignUp = () => {
 									autoComplete="phone"
 									required
 								>
-									{({ field }) => (
+									{/*({ field }) => (
 										<TextField
 											{...field}
 											variant="outlined"
 											fullWidth
 											label="DDD988888888"
 											inputProps={{ maxLength: 11 }} // Definindo o limite de caracteres
-										/>
+										/>*/}
 									)}
 								</Field>
 							</Grid>
@@ -192,7 +192,7 @@ const SignUp = () => {
 										label={i18n.t("signup.form.password")}
 										type="password"
 										id="password"
-										autoComplete="current-password"
+										autoComplete="Contraseña"
 										required
 									/>
 								</Grid>
@@ -203,7 +203,7 @@ const SignUp = () => {
 										variant="outlined"
 										fullWidth
 										id="plan-selection"
-										label="Plano"
+										label="Plan"
 										name="planId"
 										required
 									>

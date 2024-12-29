@@ -211,7 +211,7 @@ const Connections = () => {
 	const renderActionButtons = whatsApp => {
 		return (
 			<>
-				{whatsApp.status === "qrcode" && (
+				{whatsApp.status === "Qrcode" && (
 					<Button
 						size="small"
 						variant="contained"

@@ -167,7 +167,7 @@ const Invoices = () => {
     if (dias < 0) {
       return "Vencido";
     } else {
-      return "Em Aberto"
+      return "Activo"
     }
 
   }

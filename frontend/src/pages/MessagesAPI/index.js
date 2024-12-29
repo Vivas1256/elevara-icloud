@@ -47,7 +47,7 @@ const MessagesAPI = () => {
       const companyId = localStorage.getItem("companyId");
       const planConfigs = await getPlanCompany(undefined, companyId);
       if (!planConfigs.plan.useExternalApi) {
-        toast.error("Esta empresa não possui permissão para acessar essa página! Estamos lhe redirecionando.");
+        toast.error("¡Esta empresa no tiene permiso para acceder a esta página! Te estamos redireccionando.");
         setTimeout(() => {
           history.push(`/`)
         }, 1000);
@@ -275,12 +275,12 @@ const MessagesAPI = () => {
       <Typography className={classes.elementMargin} component="div">
         <b>Observações importantes</b><br />
         <ul>
-          <li>Antes de enviar mensagens, é necessário o cadastro do token vinculado à conexão que enviará as mensagens. <br />Para realizar o cadastro acesse o menu "Conexões", clique no botão editar da conexão e insira o token no devido campo.</li>
+          <li>Antes de enviar mensajes, es necesario registrar el token vinculado a la conexión que enviará los mensajes. <br />Para registrarse, acceda al menú "Conexiones", haga clic en el botón de edición de la conexión e inserte el token en el campo correspondiente.</li>
           <li>
-            O número para envio não deve ter mascara ou caracteres especiais e deve ser composto por:
+          El número de envío no debe tener máscara ni caracteres especiales y debe estar compuesto por:
             <ul>
-              <li>Código do país</li>
-              <li>DDD</li>
+              <li>Indicativo de país</li>
+              <li> 57</li>
               <li>Número</li>
             </ul>
           </li>
@@ -292,11 +292,11 @@ const MessagesAPI = () => {
       <Grid container>
         <Grid item xs={12} sm={6}>
           <Typography className={classes.elementMargin} component="div">
-            <p>Seguem abaixo a lista de informações necessárias para envio das mensagens de texto:</p>
+            <p>A continuación se muestra la lista de información necesaria para enviar mensajes de texto.:</p>
             <b>Endpoint: </b> {getEndpoint()} <br />
             <b>Método: </b> POST <br />
             <b>Headers: </b> Authorization (Bearer token) e Content-Type (application/json) <br />
-            <b>Body: </b> {"{ \"number\": \"595985523065\", \"body\": \"Sua mensagem\" }"}
+            <b>Body: </b> {"{ \"number\": \"573246318019\", \"body\": \"tu mensaje\" }"}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -312,14 +312,14 @@ const MessagesAPI = () => {
       <Grid container>
         <Grid item xs={12} sm={6}>
           <Typography className={classes.elementMargin} component="div">
-            <p>Seguem abaixo a lista de informações necessárias para envio das mensagens de texto:</p>
+            <p>A continuación se muestra la lista de información necesaria para enviar mensajes. de texto:</p>
             <b>Endpoint: </b> {getEndpoint()} <br />
             <b>Método: </b> POST <br />
             <b>Headers: </b> Authorization (Bearer token) e Content-Type (multipart/form-data) <br />
             <b>FormData: </b> <br />
             <ul>
               <li>
-                <b>number: </b> 5599999999999
+                <b>number: </b> 5799999999999
               </li>
               <li>
                 <b>medias: </b> arquivo

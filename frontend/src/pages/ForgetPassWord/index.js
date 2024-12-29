@@ -113,9 +113,9 @@ const handleSendEmail = async (values) => {
     console.log("API Response:", response.data);
 
     if (response.data.status === 404) {
-      toast.error("Email não encontrado");
+      toast.error("Correo electrónico no encontrado");
     } else {
-      toast.success(i18n.t("Email enviado com sucesso!"));
+      toast.success(i18n.t("Correo electrónico enviado correctamente!"));
     }
   } catch (err) {
     console.log("API Error:", err);
@@ -135,7 +135,7 @@ const handleSendEmail = async (values) => {
           `${process.env.REACT_APP_BACKEND_URL}/resetpasswords/${email}/${token}/${newPassword}`
         );
         setError(""); // Limpe o erro se não houver erro
-        toast.success(i18n.t("Senha redefinida com sucesso."));
+        toast.success(i18n.t("Restablecimiento de contraseña exitoso."));
         history.push("/login");
       } catch (err) {
         console.log(err);
@@ -151,13 +151,13 @@ const handleSendEmail = async (values) => {
           .required("Campo obrigatório")
           .matches(
             passwordRegex,
-            "Sua senha precisa ter no mínimo 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número."
+            "Su contraseña debe tener al menos 8 caracteres y constar de una letra mayúscula, una letra minúscula y un número."
           )
       : Yup.string(), // Sem validação se não for redefinição de senha
     confirmPassword: Yup.string().when("newPassword", {
       is: (newPassword) => isResetPasswordButtonClicked && newPassword,
       then: Yup.string()
-        .oneOf([Yup.ref("newPassword"), null], "As senhas não correspondem")
+        .oneOf([Yup.ref("newPassword"), null], "Las contraseñas no coinciden")
         .required("Campo obrigatório"),
       otherwise: Yup.string(), // Sem validação se não for redefinição de senha
     }),
@@ -176,7 +176,7 @@ const handleSendEmail = async (values) => {
             />
           </div>
           <Typography component="h1" variant="h5">
-            {i18n.t("Redefinir senha")}
+            {i18n.t("Restablecer contraseña")}
           </Typography>
           <Formik
             initialValues={{
@@ -224,7 +224,7 @@ const handleSendEmail = async (values) => {
                           variant="outlined"
                           fullWidth
                           id="token"
-                          label="Código de Verificação"
+                          label="Código de verificación"
                           name="token"
                           error={touched.token && Boolean(errors.token)}
                           helperText={touched.token && errors.token}
@@ -238,9 +238,9 @@ const handleSendEmail = async (values) => {
                           variant="outlined"
                           fullWidth
                           type={showPassword ? "text" : "password"}
-                          id="newPassword"
-                          label="Nova senha"
-                          name="newPassword"
+                          id="Nueva contraseña"
+                          label="Nueva contraseña"
+                          name="Nueva contraseña"
                           error={
                             touched.newPassword &&
                             Boolean(errors.newPassword)
@@ -273,9 +273,9 @@ const handleSendEmail = async (values) => {
                           variant="outlined"
                           fullWidth
                           type={showConfirmPassword ? "text" : "password"}
-                          id="confirmPassword"
-                          label="Confirme a senha"
-                          name="confirmPassword"
+                          id="Confirme contraseña "
+                          label="Confirme contraseña"
+                          name="Confirme contraseña"
                           error={
                             touched.confirmPassword &&
                             Boolean(errors.confirmPassword)

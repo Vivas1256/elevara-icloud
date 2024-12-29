@@ -43,9 +43,9 @@ class FormatMask {
 
   maskPhonePattern(phoneNumber){
     if(phoneNumber.length < 13){
-      return '+55 (99) 9999 9999';
+      return '+57 (99) 9999 9999';
     }else{
-      return '+55 (99) 99999 9999';
+      return '+57 (99) 99999 9999';
     }
   }
 }

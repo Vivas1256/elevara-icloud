@@ -46,7 +46,7 @@ var defaultMessages = {
   date: "Data",
   time: "Hora",
   event: "Evento",
-  allDay: "Dia Todo",
+  allDay: "Todo el día",
   week: "Semana",
   work_week: "Agendamentos",
   day: "Dia",
@@ -57,7 +57,7 @@ var defaultMessages = {
   tomorrow: "Amanhã",
   today: "Hoje",
   agenda: "Agenda",
-  noEventsInRange: "Não há agendamentos no período.",
+  noEventsInRange: "No hay citas durante este período..",
   showMore: function showMore(total) {
     return "+" + total + " mais";
   }

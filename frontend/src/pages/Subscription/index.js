@@ -87,7 +87,7 @@ const Contacts = () => {
             <TextField
               id="outlined-full-width"
               label="Período de teste"
-              defaultValue={`Seu período de teste termina em ${_formatDate(user?.company?.trialExpiration)} dias!`}
+              defaultValue={`Su período de prueba finaliza en ${_formatDate(user?.company?.trialExpiration)} dias!`}
               fullWidth
               margin="normal"
               InputLabelProps={{
@@ -104,7 +104,7 @@ const Contacts = () => {
           <div>
             <TextField
               id="outlined-full-width"
-              label="Email de cobrança"
+              label="Correo electrónico de facturación"
               defaultValue={user?.company?.email}
               fullWidth
               margin="normal"

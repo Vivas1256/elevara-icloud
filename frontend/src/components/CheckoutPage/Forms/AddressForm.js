@@ -4,7 +4,88 @@ import { InputField, SelectField } from "../../FormFields";
 import { AuthContext } from "../../../context/Auth/AuthContext";
 
 const countries = [
-  {
+  const spanishSpeakingCountries = [
+    {
+      value: "AR",
+      label: "Argentina",
+    },
+    {
+      value: "BO",
+      label: "Bolivia",
+    },
+    {
+      value: "CL",
+      label: "Chile",
+    },
+    {
+      value: "CO",
+      label: "Colombia",
+    },
+    {
+      value: "CR",
+      label: "Costa Rica",
+    },
+    {
+      value: "CU",
+      label: "Cuba",
+    },
+    {
+      value: "DO",
+      label: "República Dominicana",
+    },
+    {
+      value: "EC",
+      label: "Ecuador",
+    },
+    {
+      value: "ES",
+      label: "España",
+    },
+    {
+      value: "GQ",
+      label: "Guinea Ecuatorial",
+    },
+    {
+      value: "GT",
+      label: "Guatemala",
+    },
+    {
+      value: "HN",
+      label: "Honduras",
+    },
+    {
+      value: "MX",
+      label: "México",
+    },
+    {
+      value: "NI",
+      label: "Nicaragua",
+    },
+    {
+      value: "PA",
+      label: "Panamá",
+    },
+    {
+      value: "PY",
+      label: "Paraguay",
+    },
+    {
+      value: "PE",
+      label: "Perú",
+    },
+    {
+      value: "SV",
+      label: "El Salvador",
+    },
+    {
+      value: "UY",
+      label: "Uruguay",
+    },
+    {
+      value: "VE",
+      label: "Venezuela",
+    },
+    {
     value: "BR",
     label: "Brasil",
   },
