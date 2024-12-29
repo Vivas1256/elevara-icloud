@@ -101,7 +101,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(ticket.status).emit(`company-${companyId}-ticket`, {
-    action: "update",
+    action: "actualizar",
     ticket
   });
   return res.status(200).json(ticket);
@@ -215,7 +215,7 @@ export const remove = async (
     .to(`queue-${ticket.queueId}-${ticket.status}`)
     .to(`queue-${ticket.queueId}-notification`)
     .emit(`company-${companyId}-ticket`, {
-      action: "delete",
+      action: "borrar",
       ticketId: +ticketId
     });
 
@@ -235,7 +235,7 @@ export const closeAll = async (req: Request, res: Response): Promise<Response> =
   tickets.forEach(async ticket => {
 
     await ticket.update({
-      status: "closed",
+      status: "cerrado",
       useIntegration: false,
       promptId: null,
       integrationId: null,
@@ -249,7 +249,7 @@ export const closeAll = async (req: Request, res: Response): Promise<Response> =
       .to(`queue-${ticket.queueId}-${ticket.status}`)
       .to(`queue-${ticket.queueId}-notification`)
       .emit(`company-${companyId}-ticket`, {
-        action: "delete",
+        action: "borrar",
         ticketId: ticket.id
       });
 

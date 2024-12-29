@@ -45,7 +45,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-queueIntegration`, {
-    action: "create",
+    action: "crear",
     queueIntegration
   });
 
@@ -73,7 +73,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-queueIntegration`, {
-    action: "update",
+    action: "actualizar",
     queueIntegration
   });
 
@@ -91,7 +91,7 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-queueIntegration`, {
-    action: "delete",
+    action: "borrar",
     integrationId: +integrationId
   });
 

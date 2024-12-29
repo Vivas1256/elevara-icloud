@@ -64,7 +64,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-ContactList`, {
-    action: "create",
+    action: "crear",
     record
   });
 
@@ -105,7 +105,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-ContactList`, {
-    action: "update",
+    action: "actualizar",
     record
   });
 
@@ -123,11 +123,11 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-ContactList`, {
-    action: "delete",
+    action: "borrar",
     id
   });
 
-  return res.status(200).json({ message: "Contact list deleted" });
+  return res.status(200).json({ message: "Lista de contactos eliminada" });
 };
 
 export const findList = async (
@@ -151,7 +151,7 @@ export const upload = async (req: Request, res: Response) => {
   const io = getIO();
 
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-ContactListItem-${+id}`, {
-    action: "reload",
+    action: "recargar",
     records: response
   });
 

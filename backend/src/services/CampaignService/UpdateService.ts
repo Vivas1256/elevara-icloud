@@ -35,7 +35,7 @@ const UpdateService = async (data: Data): Promise<Campaign> => {
 
   if (["INATIVA", "PROGRAMADA", "CANCELADA"].indexOf(data.status) === -1) {
     throw new AppError(
-      "Só é permitido alterar campanha Inativa e Programada",
+      "Sólo se permite cambiar campañas Inactivas y Programadas",
       400
     );
   }

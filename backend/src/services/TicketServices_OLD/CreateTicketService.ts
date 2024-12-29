@@ -80,7 +80,7 @@ const CreateTicketService = async ({
   const io = getIO();
 
   io.to(ticket.id.toString()).emit("ticket", {
-    action: "update",
+    action: "actualizar",
     ticket
   });
 

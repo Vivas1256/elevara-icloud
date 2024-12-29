@@ -20,7 +20,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`user-${serializedUser.id}`).emit(`company-${serializedUser.companyId}-auth`, {
-    action: "update",
+    action: "actualizar",
     user: {
       id: serializedUser.id,
       email: serializedUser.email,

@@ -14,7 +14,7 @@ export const StartWhatsAppSession = async (
 
   const io = getIO();
   io.emit(`company-${companyId}-whatsappSession`, {
-    action: "update",
+    action: "actualizar",
     session: whatsapp
   });
 

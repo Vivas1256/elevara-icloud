@@ -16,14 +16,14 @@ const ShowPlanCompanyService = async (id: string | number): Promise<Company> => 
                     "connections",
                     "queues",
                     "value",
-                    "useCampaigns",
-                    "useSchedules",
-                    "useInternalChat",
-                    "useExternalApi",
-                    "useKanban",
-                    "useOpenAi",
-                    "useIntegrations",
-					"useInternal"
+                    "use Campaigns",
+                    "use Schedules",
+                    "use Chat interno",
+                    "use ExternalApi",
+                    "use Kanban",
+                    "use OpenAi",
+                    "use Integrations",
+					"use Internal"
                 ]
             },
         ]

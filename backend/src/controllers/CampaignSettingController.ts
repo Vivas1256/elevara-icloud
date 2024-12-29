@@ -26,7 +26,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-campaignSettings`, {
-    action: "create",
+    action: "crear",
     record
   });
 

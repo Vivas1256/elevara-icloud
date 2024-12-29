@@ -44,7 +44,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit("tag", {
-    action: "create",
+    action: "crear",
     tag
   });
 
@@ -82,7 +82,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${req.user.companyId}-mainchannel`).emit("tag", {
-    action: "update",
+    action: "actualizar",
     tag
   });
 
@@ -99,11 +99,11 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${req.user.companyId}-mainchannel`).emit("tag", {
-    action: "delete",
+    action: "borrar",
     tagId
   });
 
-  return res.status(200).json({ message: "Tag deleted" });
+  return res.status(200).json({ message: "Etiqueta eliminada" });
 };
 
 export const list = async (req: Request, res: Response): Promise<Response> => {

@@ -44,7 +44,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit("prompt", {
-    action: "update",
+    action: "actualizar",
     prompt: promptTable
   });
 
@@ -77,7 +77,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit("prompt", {
-    action: "update",
+    action: "actualizar",
     prompt
   });
 
@@ -96,19 +96,19 @@ export const remove = async (
   try {
     const { count } = await Whatsapp.findAndCountAll({ where: { promptId: +promptId, companyId } });
 
-    if (count > 0) return res.status(200).json({ message: "Não foi possível excluir! Verifique se este prompt está sendo usado nas conexões Whatsapp!" });
+    if (count > 0) return res.status(200).json({ message: "¡No se puede eliminar! Compruebe si este mensaje se utiliza en las conexiones de Whatsapp!" });
 
     await DeletePromptService(promptId, companyId);
 
     const io = getIO();
     io.to(`company-${companyId}-mainchannel`).emit("prompt", {
-      action: "delete",
+      action: "borrar",
       intelligenceId: +promptId
     });
 
-    return res.status(200).json({ message: "Prompt deleted" });
+    return res.status(200).json({ message: "Aviso eliminado" });
   } catch (err) {
-    return res.status(500).json({ message: "Não foi possível excluir! Verifique se este prompt está sendo usado!" });
+    return res.status(500).json({ message: "¡No se puede eliminar! Compruebe si se está utilizando este mensaje!" });
   }
 };
 

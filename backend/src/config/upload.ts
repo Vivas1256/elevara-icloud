@@ -13,9 +13,9 @@ export default {
 
       let folder;
 
-      if (typeArch && typeArch !== "announcements") {
+      if (typeArch && typeArch !== "anuncios") {
         folder =  path.resolve(publicFolder , typeArch, fileId ? fileId : "") 
-      } else if (typeArch && typeArch === "announcements") {
+      } else if (typeArch && typeArch === "anuncios") {
         folder =  path.resolve(publicFolder , typeArch) 
       }
       else
@@ -32,7 +32,7 @@ export default {
     filename(req, file, cb) {
       const { typeArch } = req.body;
 
-      const fileName = typeArch && typeArch !== "announcements" ? file.originalname.replace('/','-').replace(/ /g, "_") : new Date().getTime() + '_' + file.originalname.replace('/','-').replace(/ /g, "_");
+      const fileName = typeArch && typeArch !== "anuncios" ? file.originalname.replace('/','-').replace(/ /g, "_") : new Date().getTime() + '_' + file.originalname.replace('/','-').replace(/ /g, "_");
       return cb(null, fileName);
     }
   })

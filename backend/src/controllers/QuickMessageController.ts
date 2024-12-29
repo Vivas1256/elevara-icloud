@@ -72,7 +72,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-quickmessage`, {
-    action: "create",
+    action: "crear",
     record
   });
 
@@ -133,7 +133,7 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-quickmessage`, {
-    action: "delete",
+    action: "borrar",
     id
   });
 
@@ -191,7 +191,7 @@ export const deleteMedia = async (
       mediaName: null
     });
 
-    return res.send({ mensagem: "Arquivo Excluído" });
+    return res.send({ mensagem: "Archivo eliminado" });
     } catch (err: any) {
       throw new AppError(err.message);
   }

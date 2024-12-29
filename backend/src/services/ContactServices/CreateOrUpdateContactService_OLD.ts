@@ -49,7 +49,7 @@ const CreateOrUpdateContactService = async ({
       });
     }
     io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-      action: "update",
+      action: "actualizar",
       contact
     });
   } else {
@@ -65,7 +65,7 @@ const CreateOrUpdateContactService = async ({
     });
 
     io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-      action: "create",
+      action: "crear",
       contact
     });
   }

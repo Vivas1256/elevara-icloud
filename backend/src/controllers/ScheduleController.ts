@@ -54,7 +54,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit("schedule", {
-    action: "create",
+    action: "crear",
     schedule
   });
 
@@ -86,7 +86,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit("schedule", {
-    action: "update",
+    action: "actualizar",
     schedule
   });
 
@@ -104,7 +104,7 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit("schedule", {
-    action: "delete",
+    action: "borrar",
     scheduleId
   });
 
@@ -125,7 +125,7 @@ export const mediaUpload = async (
     schedule.mediaName = file.originalname;
 
     await schedule.save();
-    return res.send({ mensagem: "Arquivo Anexado" });
+    return res.send({ mensagem: "Archivo adjunto" });
     } catch (err: any) {
       throw new AppError(err.message);
   }
@@ -147,7 +147,7 @@ export const deleteMedia = async (
     schedule.mediaPath = null;
     schedule.mediaName = null;
     await schedule.save();
-    return res.send({ mensagem: "Arquivo Excluído" });
+    return res.send({ mensagem: "Archivo adjunto" });
     } catch (err: any) {
       throw new AppError(err.message);
   }

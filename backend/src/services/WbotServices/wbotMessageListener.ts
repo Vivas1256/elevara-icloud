@@ -293,7 +293,7 @@ export const sendMessageImage = async (
     sentMessage = await wbot.sendMessage(
       `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
       {
-        text: formatBody('Não consegui enviar o PDF, tente novamente!', contact)
+        text: formatBody('No pude enviar el PDF, inténtalo de nuevo.!', contact)
       }
     );
   }
@@ -321,7 +321,7 @@ export const sendMessageLink = async (
   } catch (error) {
     sentMessage = await wbot.sendMessage(
       `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, {
-      text: formatBody('Não consegui enviar o PDF, tente novamente!', contact)
+      text: formatBody('No pude enviar el PDF, inténtalo de nuevo.!', contact)
     }
     );
   }
@@ -411,7 +411,7 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
 ${JSON.stringify(msg)}`);
       Sentry.setExtra("Mensagem", { BodyMsg: msg.message, msg, type });
       Sentry.captureException(
-        new Error("Novo Tipo de Mensagem em getTypeMessage")
+        new Error("Nuevo tipo de mensaje en getTypeMessage")
       );
     }
     return types[type];
@@ -620,7 +620,7 @@ const convertTextToSpeechAndSaveToFile = (
               reject(error);
             });
         } else {
-          reject(new Error("No result from synthesizer"));
+          reject(new Error("No hay resultados del sintetizador."));
         }
         synthesizer.close();
       },
@@ -654,7 +654,7 @@ const deleteFileSync = (path: string): void => {
   try {
     fs.unlinkSync(path);
   } catch (error) {
-    console.error("Erro ao deletar o arquivo:", error);
+    console.error("Error al eliminar el archivo:", error);
   }
 };
 
@@ -701,7 +701,7 @@ const handleOpenAi = async (
     limit: prompt.maxMessages
   });
 
-  const promptSystem = `Nas respostas utilize o nome ${sanitizeName(contact.name || "Amigo(a)")} para identificar o cliente.\nSua resposta deve usar no máximo ${prompt.maxTokens} tokens e cuide para não truncar o final.\nSempre que possível, mencione o nome dele para ser mais personalizado o atendimento e mais educado. Quando a resposta requer uma transferência para o setor de atendimento, comece sua resposta com 'Ação: Transferir para o setor de atendimento'.\n${prompt.prompt}\n`;
+  const promptSystem = `En las respuestas, use el nombre. ${sanitizeName(contact.name || "Amigo(a)")} para identificar o cliente.\nSua resposta deve usar no máximo ${prompt.maxTokens} tokens e cuide para não truncar o final.\nSempre que possível, mencione o nome dele para ser mais personalizado o atendimento e mais educado. Quando a resposta requer uma transferência para o setor de atendimento, comece sua resposta com 'Ação: Transferir para o setor de atendimento'.\n${prompt.prompt}\n`;
 
   let messagesOpenAi: { role: string; content: string }[] = [];
 
@@ -729,15 +729,15 @@ const handleOpenAi = async (
       console.log("OpenAI response:", chat);
 
       if (!chat.data || !chat.data.choices || chat.data.choices.length === 0) {
-        console.error("No choices returned from OpenAI API");
+        console.error("No se devolvieron opciones de la API OpenAI");
         return; // Handle this case
       }
 
       let response = chat.data.choices[0].message?.content;
 
-      if (response?.includes("Ação: Transferir para o setor de atendimento")) {
+      if (response?.includes("Acción: Transferencia al sector servicios")) {
         await transferQueue(prompt.queueId, ticket, contact);
-        response = response.replace("Ação: Transferir para o setor de atendimento", "").trim();
+        response = response.replace("Acción: Transferencia al sector servicios", "").trim();
       }
 
       if (prompt.voice === "texto") {
@@ -766,7 +766,7 @@ const handleOpenAi = async (
         deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.wav`);
       }
     } catch (error) {
-      console.error("Error during OpenAI API call:", error);
+      console.error("Error durante la llamada a la API de OpenAI:", error);
     }
   } else if (msg.message?.audioMessage) {
     const mediaUrl = mediaSent!.mediaUrl!.split("/").pop();
@@ -801,15 +801,15 @@ const handleOpenAi = async (
       console.log("OpenAI response (audio):", chat);
 
       if (!chat.data || !chat.data.choices || chat.data.choices.length === 0) {
-        console.error("No choices returned from OpenAI API for audio.");
+        console.error("No se devolvieron opciones de la API OpenAI para audio.");
         return; // Handle this case
       }
 
       let response = chat.data.choices[0].message?.content;
 
-      if (response?.includes("Ação: Transferir para o setor de atendimento")) {
+      if (response?.includes("Acción: Transferencia al sector servicios")) {
         await transferQueue(prompt.queueId, ticket, contact);
-        response = response.replace("Ação: Transferir para o setor de atendimento", "").trim();
+        response = response.replace("Acción: Transferencia al sector servicios", "").trim();
       }
       if (prompt.voice === "texto") {
         const sentMessage = await wbot.sendMessage(msg.key.remoteJid!, {
@@ -837,7 +837,7 @@ const handleOpenAi = async (
         deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.wav`);
       }
     } catch (error) {
-      console.error("Error handling audio message:", error);
+      console.error("Error al manejar el mensaje de audio:", error);
     }
   }
 };
@@ -926,7 +926,7 @@ const verifyMediaMessage = async (
     io.to(`company-${ticket.companyId}-closed`)
       .to(`queue-${ticket.queueId}-closed`)
       .emit(`company-${ticket.companyId}-ticket`, {
-        action: "delete",
+        action: "borrar",
         ticket,
         ticketId: ticket.id,
       });
@@ -935,7 +935,7 @@ const verifyMediaMessage = async (
       .to(`queue-${ticket.queueId}-${ticket.status}`)
       .to(ticket.id.toString())
       .emit(`company-${ticket.companyId}-ticket`, {
-        action: "update",
+        action: "actualizar",
         ticket,
         ticketId: ticket.id,
       });
@@ -1006,7 +1006,7 @@ export const verifyMessage = async (
     io.to(`company-${ticket.companyId}-closed`)
       .to(`queue-${ticket.queueId}-closed`)
       .emit(`company-${ticket.companyId}-ticket`, {
-        action: "delete",
+        action: "borrar",
         ticket,
         ticketId: ticket.id
       });
@@ -1014,7 +1014,7 @@ export const verifyMessage = async (
     io.to(`company-${ticket.companyId}-${ticket.status}`)
       .to(`queue-${ticket.queueId}-${ticket.status}`)
       .emit(`company-${ticket.companyId}-ticket`, {
-        action: "update",
+        action: "actualizar",
         ticket,
         ticketId: ticket.id
       });
@@ -2392,7 +2392,7 @@ const verifyCampaignMessageAndCloseTicket = async (
     io.to(`company-${ticket.companyId}-open`)
       .to(`queue-${ticket.queueId}-open`)
       .emit(`company-${ticket.companyId}-ticket`, {
-        action: "delete",
+        action: "borrar",
         ticket,
         ticketId: ticket.id,
       });
@@ -2401,7 +2401,7 @@ const verifyCampaignMessageAndCloseTicket = async (
       .to(`queue-${ticket.queueId}-${ticket.status}`)
       .to(ticket.id.toString())
       .emit(`company-${ticket.companyId}-ticket`, {
-        action: "update",
+        action: "actualizar",
         ticket,
         ticketId: ticket.id,
       });

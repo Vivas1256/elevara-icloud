@@ -50,8 +50,8 @@ export const remove = async (req: Request, res: Response): Promise<Response> => 
     if (tagIdsWithKanbanOne)
     await TicketTag.destroy({ where: { ticketId, tagId: tagIdsWithKanbanOne } });
 
-    return res.status(200).json({ message: 'Ticket tags removed successfully.' });
+    return res.status(200).json({ message: 'Las etiquetas de los tickets se eliminaron correctamente.' });
   } catch (error) {
-    return res.status(500).json({ error: 'Failed to remove ticket tags.' });
+    return res.status(500).json({ error: 'No se pudieron eliminar las etiquetas de los boletos.' });
   }
 };

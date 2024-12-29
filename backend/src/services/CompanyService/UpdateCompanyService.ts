@@ -66,7 +66,7 @@ if (!plan) {
     });
   
   } else {
-    throw new Error("Nenhuma fatura em aberto para este cliente!");
+    throw new Error("No hay facturas abiertas para este cliente!");
   }
 
   await company.update({

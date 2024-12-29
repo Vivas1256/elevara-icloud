@@ -68,7 +68,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.emit(`company-announcement`, {
-    action: "create",
+    action: "crear",
     record
   });
 
@@ -108,7 +108,7 @@ export const update = async (
 
   const io = getIO();
   io.emit(`company-announcement`, {
-    action: "update",
+    action: "actualizar",
     record
   });
 
@@ -126,7 +126,7 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-announcement`, {
-    action: "delete",
+    action: "borrar",
     id
   });
 
@@ -162,11 +162,11 @@ export const mediaUpload = async (
 
     const io = getIO();
     io.emit(`company-announcement`, {
-      action: "update",
+      action: "actualizar",
       record: announcement
     });
 
-    return res.send({ mensagem: "Mensagem enviada" });
+    return res.send({ mensagem: "Mensaje enviado" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -194,11 +194,11 @@ export const deleteMedia = async (
 
     const io = getIO();
     io.emit(`company-announcement`, {
-      action: "update",
+      action: "actualizar",
       record: announcement
     });
 
-    return res.send({ mensagem: "Arquivo excluído" });
+    return res.send({ mensagem: "archivo eliminado" });
   } catch (err: any) {
     throw new AppError(err.message);
   }

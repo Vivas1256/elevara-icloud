@@ -80,7 +80,7 @@ async function handleSendMessage(job) {
     const whatsapp = await Whatsapp.findByPk(data.whatsappId);
 
     if (whatsapp == null) {
-      throw Error("Whatsapp não identificado");
+      throw Error("WhatsApp no ​​identificado");
     }
 
     const messageData: MessageData = data.data;
@@ -220,19 +220,19 @@ async function handleVerifySchedules(job) {
   try {
     const { count, rows: schedules } = await Schedule.findAndCountAll({
       where: {
-        status: "PENDENTE",
+        status: "PENDIENTE",
         sentAt: null,
         sendAt: {
           [Op.gte]: moment().format("YYYY-MM-DD HH:mm:ss"),
           [Op.lte]: moment().add("30", "seconds").format("YYYY-MM-DD HH:mm:ss")
         }
       },
-      include: [{ model: Contact, as: "contact" }]
+      include: [{ model: Contact, as: "contacto" }]
     });
     if (count > 0) {
       schedules.map(async schedule => {
         await schedule.update({
-          status: "AGENDADA"
+          status: "PROGRAMADO"
         });
         sendScheduledMessages.add(
           "SendMessage",
@@ -259,7 +259,7 @@ async function handleSendScheduledMessage(job) {
     scheduleRecord = await Schedule.findByPk(schedule.id);
   } catch (e) {
     Sentry.captureException(e);
-    logger.info(`Erro ao tentar consultar agendamento: ${schedule.id}`);
+    logger.info(`Error al intentar consultar el horario: ${schedule.id}`);
   }
 
   try {
@@ -278,11 +278,11 @@ async function handleSendScheduledMessage(job) {
 
     await scheduleRecord?.update({
       sentAt: moment().format("YYYY-MM-DD HH:mm"),
-      status: "ENVIADA"
+      status: "ENVIADO"
     });
 
-    logger.info(`Mensagem agendada enviada para: ${schedule.contact.name}`);
-    sendScheduledMessages.clean(15000, "completed");
+    logger.info(`Mensaje programado enviado a: ${schedule.contact.name}`);
+    sendScheduledMessages.clean(15000, "terminado");
   } catch (e: any) {
     Sentry.captureException(e);
     await scheduleRecord?.update({
@@ -314,7 +314,7 @@ async function handleVerifyCampaigns(job) {
       const scheduledAt = moment(campaign.scheduledAt);
       const delay = scheduledAt.diff(now, "milliseconds");
       logger.info(
-        `Campanha enviada para a fila de processamento: Campanha=${campaign.id}, Delay Inicial=${delay}`
+        `Campaña enviada a la cola de procesamiento: Campanha=${campaign.id}, Delay Inicial=${delay}`
       );
       campaignQueue.add(
         "ProcessCampaign",
@@ -537,7 +537,7 @@ async function verifyAndFinalizeCampaign(campaign) {
 
   const io = getIO();
   io.to(`company-${campaign.companyId}-mainchannel`).emit(`company-${campaign.companyId}-campaign`, {
-    action: "update",
+    action: "actualizar",
     record: campaign
   });
 }

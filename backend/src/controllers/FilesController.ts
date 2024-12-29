@@ -46,7 +46,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company${companyId}-file`, {
-    action: "create",
+    action: "crear",
     fileList
   });
 
@@ -87,7 +87,7 @@ export const uploadMedias = async (req: Request, res: Response): Promise<Respons
       }
     }
     
-    return res.send({ mensagem: "Arquivos atualizados" });
+    return res.send({ mensagem: "Archivos actualizados" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -109,7 +109,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company${companyId}-file`, {
-    action: "update",
+    action: "actualizar",
     fileList
   });
 
@@ -128,11 +128,11 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company${companyId}-file`, {
-    action: "delete",
+    action: "borrar",
     fileId
   });
 
-  return res.status(200).json({ message: "File List deleted" });
+  return res.status(200).json({ message: "Lista de archivos eliminada" });
 };
 
 export const removeAll = async (

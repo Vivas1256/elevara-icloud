@@ -113,13 +113,13 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                   .then(async function (response) {
                     if (response.data == 'NULL') {
                       const textMessage = {
-                        text: formatBody(`Cadastro não localizado! *CPF/CNPJ* incorreto ou inválido. Tenta novamente!`, contact),
+                        text: formatBody(`¡Registro no encontrado! *CPF/CNPJ incorrecto o no válido*. Intentar otra vez!`, contact),
                       };
                       try {
                         await sleep(2000)
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, textMessage);
                       } catch (error) {
-                        console.log('Não consegui enviar a mensagem!')
+                        console.log('no pude enviar el mensaje!')
                       }
                     } else {
                       let nome
@@ -160,9 +160,9 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                       const anoMesDia = `${dia}/${mes}/${ano}`
 
                       try {
-                        const textMessage = { text: formatBody(`Localizei seu Cadastro! *${nome}* só mais um instante por favor!`, contact) };
+                        const textMessage = { text: formatBody(`Encontré tu registro! *${nome}* solo un momento mas por favor!`, contact) };
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, textMessage);
-                        const bodyBoleto = { text: formatBody(`Segue a segunda-via da sua Fatura!\n\n*Nome:* ${nome}\n*Valor:* R$ ${valorCorrigido}\n*Data Vencimento:* ${anoMesDia}\n*Link:* ${urlmkauth}/boleto/21boleto.php?titulo=${titulo}\n\nVou mandar o *código de barras* na próxima mensagem para ficar mais fácil para você copiar!`, contact) };
+                        const bodyBoleto = { text: formatBody(`Siga el duplicado de su factura!\n\n*Nome:* ${nome}\n*Valor:* R$ ${valorCorrigido}\n*Data Vencimento:* ${anoMesDia}\n*Link:* ${urlmkauth}/boleto/21boleto.php?titulo=${titulo}\n\nVou mandar o *código de barras* na próxima mensagem para ficar mais fácil para você copiar!`, contact) };
                         await sleep(2000)
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyBoleto);
                         const bodyLinha = { text: formatBody(`${linhadig}`, contact) };
@@ -179,7 +179,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                           await sleep(2000)
                           await sendMessageImage(wbot, contact, ticket, linkBoleto, "")
                         }
-                        const bodyPdf = { text: formatBody(`Agora vou te enviar o boleto em *PDF* caso você precise.`, contact) };
+                        const bodyPdf = { text: formatBody(`Ahora te enviaré la factura en *PDF* si la necesitas.`, contact) };
                         await sleep(2000)
                         const bodyPdfQr = { text: formatBody(`${bodyPdf}`, contact) };
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdfQr);
@@ -206,10 +206,10 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
 
                         if (bloqueado === 'sim') {
-                          const bodyBloqueio = { text: formatBody(`${nome} vi tambem que a sua conexão esta bloqueada! Vou desbloquear para você por *48 horas*.`, contact) };
+                          const bodyBloqueio = { text: formatBody(`${nome} ¡También vi que tu conexión está bloqueada! Lo desbloquearé por *48 horas*.`, contact) };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyBloqueio);
-                          const bodyqrcode = { text: formatBody(`Estou liberando seu acesso. Por favor aguarde!`, contact) };
+                          const bodyqrcode = { text: formatBody(`Estoy concediendo su acceso. Espere por favor!`, contact) };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
                           var optionsdesbloq = {
@@ -220,20 +220,20 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             }
                           };
                           axios.request(optionsdesbloq as any).then(async function (response) {
-                            const bodyLiberado = { text: formatBody(`Pronto liberei! Vou precisar que você *retire* seu equipamento da tomada.\n\n*OBS: Somente retire da tomada.* \nAguarde 1 minuto e ligue novamente!`, contact) };
+                            const bodyLiberado = { text: formatBody(`¡Lo lanzaré pronto! Necesitaré que *desconectes* tu equipo del enchufe.\n\n*NOTA: simplemente desconéctalo.* \nEspera 1 minuto y vuelve a encenderlo.!`, contact) };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyLiberado);
-                            const bodyqrcode = { text: formatBody(`Veja se seu acesso voltou! Caso nao tenha voltado retorne o contato e fale com um atendente!`, contact) };
+                            const bodyqrcode = { text: formatBody(`¡Comprueba si tu acceso ha vuelto! Si no ha regresado, vuelva a ponerse en contacto y hable con un representante de servicio al cliente.!`, contact) };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
                           }).catch(async function (error) {
-                            const bodyfinaliza = { text: formatBody(`Opss! Algo de errado aconteceu! Digite *#* para voltar ao menu anterior e fale com um atendente!`, contact) };
+                            const bodyfinaliza = { text: formatBody(`¡Ups! ¡Algo malo pasó! Escriba *#* para volver al menú anterior y hablar con un asistente!`, contact) };
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
                           });
                         }
 
 
-                        const bodyfinaliza = { text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact) };
+                        const bodyfinaliza = { text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact) };
                         await sleep(12000)
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
 
@@ -250,27 +250,27 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                         });
 
                       } catch (error) {
-                        console.log('11 Não consegui enviar a mensagem!')
+                        console.log('11 No pude enviar el mensaje!')
                       }
                     }
                   })
                   .catch(async function (error) {
                     try {
-                      const bodyBoleto = { text: formatBody(`Não consegui encontrar seu cadastro.\n\nPor favor tente novamente!\nOu digite *#* para voltar ao *Menu Anterior*`, contact) };
+                      const bodyBoleto = { text: formatBody(`No pude encontrar su registro.\n\n¡Inténtelo de nuevo!\nO escriba *#* para regresar al *Menú anterior*`, contact) };
                       await sleep(2000)
                       await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyBoleto);
                     } catch (error) {
-                      console.log('111 Não consegui enviar a mensagem!')
+                      console.log('111 No pude enviar el mensaje!')
                     }
 
                   });
               })
               .catch(async function (error) {
-                const bodyfinaliza = { text: formatBody(`Opss! Algo de errado aconteceu! Digite *#* para voltar ao menu anterior e fale com um atendente!`, contact) };
+                const bodyfinaliza = { text: formatBody(`¡Ups! ¡Algo malo pasó! Escriba *#* para volver al menú anterior y hablar con un asistente!`, contact) };
                 await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
               });
           } else {
-            const body = { text: formatBody(`Este CPF/CNPJ não é válido!\n\nPor favor tente novamente!\nOu digite *#* para voltar ao *Menu Anterior*`, contact) };
+            const body = { text: formatBody(`¡Este CPF/CNPJ no es válido!\n\n¡Inténtelo de nuevo!\nO escriba *#* para regresar al *Menú anterior*`, contact) };
             await sleep(2000)
             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
           }
@@ -284,7 +284,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
           const isCPFCNPJ = validaCpfCnpj(numberCPFCNPJ)
           if (isCPFCNPJ) {
             const body = {
-              text: formatBody(`Aguarde! Estamos consultando na base de dados!`, contact),
+              text: formatBody(`¡Esperar! Estamos consultando la base de datos.!`, contact),
             };
             try {
               await sleep(2000)
@@ -312,14 +312,14 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
               if (totalCount === 0) {
                 const body = {
-                  text: formatBody(`Cadastro não localizado! *CPF/CNPJ* incorreto ou inválido. Tenta novamente!`, contact),
+                  text: formatBody(`¡Registro no encontrado! *CPF/CNPJ incorrecto o no válido*. Intentar otra vez!`, contact),
                 };
                 await sleep(2000)
                 await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
               } else {
 
                 const body = {
-                  text: formatBody(`Localizei seu Cadastro! \n*${nome}* só mais um instante por favor!`, contact),
+                  text: formatBody(`Encontré tu registro! \n*${nome}* solo un momento mas por favor!`, contact),
                 };
                 await sleep(2000)
                 await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
@@ -339,7 +339,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
                   if (totalCount_overdue === 0) {
                     const body = {
-                      text: formatBody(`Você não tem nenhuma fatura vencidada! \nVou te enviar a proxima fatura. Por favor aguarde!`, contact),
+                      text: formatBody(`¡No tienes facturas vencidas! \nLe enviaré la próxima factura. Espere por favor!`, contact),
                     };
                     await sleep(2000)
                     await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
@@ -432,14 +432,14 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             };
                             if (response.data?.errors?.code !== 'invalid_action') {
                               const bodycodigo = {
-                                text: formatBody(`Este é o *Código de Barras*!`, contact),
+                                text: formatBody(`Este es el *Código de barras*!`, contact),
                               };
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodycodigo);
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodycodigoBarras);
                               const bodyfinaliza = {
-                                text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                                text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                               };
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -451,7 +451,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                               });
                             } else {
                               const bodyfinaliza = {
-                                text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                                text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                               };
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -578,7 +578,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodycodigoBarras);
                             const bodyfinaliza = {
-                              text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                              text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -589,7 +589,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             });
                           } else {
                             const bodyfinaliza = {
-                              text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                              text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -683,7 +683,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                 await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
               } if (response.data.total === 0) {
                 const body = {
-                  text: formatBody(`Cadastro não localizado! *CPF/CNPJ* incorreto ou inválido. Tenta novamente!`, contact),
+                  text: formatBody(`¡Registro no encontrado! *CPF/CNPJ incorrecto o no válido*. Intentar otra vez!`, contact),
                 };
                 try {
                   await sleep(2000)
@@ -854,12 +854,12 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                         id_contrato = response.data?.registros[0]?.id;
                         if (status_internet !== 'A') {
                           const bodyPdf = {
-                            text: formatBody(`*${nome}* vi tambem que a sua conexão esta bloqueada! Vou desbloquear para você.`, contact),
+                            text: formatBody(`*${nome}* ¡También vi que tu conexión está bloqueada! Lo desbloquearé para ti.`, contact),
                           };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                           const bodyqrcode = {
-                            text: formatBody(`Estou liberando seu acesso. Por favor aguarde!`, contact),
+                            text: formatBody(`Estoy concediendo su acceso. Espere por favor!`, contact),
                           };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
@@ -908,12 +908,12 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body_mensagem);
                                   const bodyPdf = {
-                                    text: formatBody(`Fiz os procedimentos de liberação! Agora aguarde até 5 minutos e veja se sua conexão irá retornar! .\n\nCaso não tenha voltado, retorne o contato e fale com um atendente!`, contact),
+                                    text: formatBody(`¡Hice los trámites de liberación! Ahora espera hasta 5 minutos y comprueba si tu conexión vuelve! .\n\nCaso não tenha voltado, retorne o contato e fale com um atendente!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                                   const bodyfinaliza = {
-                                    text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                                    text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -930,7 +930,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             } else {
                               var msgerrolbieracao = response.data.mensagem
                               const bodyerro = {
-                                text: formatBody(`Ops! Ocorreu um erro e nao consegui desbloquear`, contact),
+                                text: formatBody(`¡Ups! Ocurrió un error y no pude desbloquear`, contact),
                               };
                               const msg_errolbieracao = {
                                 text: formatBody(`${msgerrolbieracao}`, contact),
@@ -940,7 +940,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, msg_errolbieracao);
                               const bodyerroatendent = {
-                                text: formatBody(`Digite *#* para voltar o menu e fale com um atendente!`, contact),
+                                text: formatBody(`Escriba *#* para volver al menú y hablar con un asistente!`, contact),
                               };
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerroatendent);
@@ -948,14 +948,14 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
                           }).catch(async function (error) {
                             const bodyerro = {
-                              text: formatBody(`Ops! Ocorreu um erro digite *#* e fale com um atendente!`, contact),
+                              text: formatBody(`¡Ups! Se produjo un error, escriba *#* y hable con un representante de servicio al cliente!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
                           });
                         } else {
                           const bodyfinaliza = {
-                            text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                            text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                           };
                           await sleep(8000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -970,7 +970,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                       }).catch(async function (error) {
 
                         const bodyerro = {
-                          text: formatBody(`Ops! Ocorreu um erro digite *#* e fale com um atendente!`, contact),
+                          text: formatBody(`¡Ups! Se produjo un error, escriba *#* y hable con un representante de servicio al cliente!`, contact),
                         };
                         await sleep(2000)
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
@@ -1017,12 +1017,12 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                         id_contrato = response.data?.registros[0]?.id;
                         if (status_internet !== 'A') {
                           const bodyPdf = {
-                            text: formatBody(`*${nome}* vi tambem que a sua conexão esta bloqueada! Vou desbloquear para você.`, contact),
+                            text: formatBody(`*${nome}* ¡También vi que tu conexión está bloqueada! Lo desbloquearé para ti.`, contact),
                           };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                           const bodyqrcode = {
-                            text: formatBody(`Estou liberando seu acesso. Por favor aguarde!`, contact),
+                            text: formatBody(`Estoy concediendo su acceso. Espere por favor!`, contact),
                           };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
@@ -1071,12 +1071,12 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body_mensagem);
                                   const bodyPdf = {
-                                    text: formatBody(`Fiz os procedimentos de liberação! Agora aguarde até 5 minutos e veja se sua conexão irá retornar! .\n\nCaso não tenha voltado, retorne o contato e fale com um atendente!`, contact),
+                                    text: formatBody(`¡Hice los trámites de liberación! ¡Ahora espere hasta 5 minutos y vea si su conexión regresa! .\n\nSi no has regresado, vuelve a ponerte en contacto y habla con un asistente!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                                   const bodyfinaliza = {
-                                    text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                                    text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -1089,17 +1089,17 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body_mensagem);
                                   const bodyPdf = {
-                                    text: formatBody(`Vou precisar que você *retire* seu equipamento da tomada.\n\n*OBS: Somente retire da tomada.* \nAguarde 1 minuto e ligue novamente!`, contact),
+                                    text: formatBody(`Necesitaré que *desconectes* tu equipo del enchufe.\n\n*NOTA: simplemente desconéctalo.* \nEspera 1 minuto y vuelve a encenderlo.!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                                   const bodyqrcode = {
-                                    text: formatBody(`Veja se seu acesso voltou! Caso não tenha voltado retorne o contato e fale com um atendente!`, contact),
+                                    text: formatBody(`¡Comprueba si tu acceso ha vuelto! Si no ha regresado, vuelva a ponerse en contacto y hable con un representante de servicio al cliente.!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
                                   const bodyfinaliza = {
-                                    text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                                    text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                                   };
                                   await sleep(2000)
                                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -1115,7 +1115,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                               //FIM DA DESCONEXÃO
                             } else {
                               const bodyerro = {
-                                text: formatBody(`Ops! Ocorreu um erro e nao consegui desbloquear! Digite *#* e fale com um atendente!`, contact),
+                                text: formatBody(`¡Ups! ¡Ocurrió un error y no pude desbloquearlo! Escriba *#* y hable con un asistente!`, contact),
                               };
                               await sleep(2000)
                               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
@@ -1123,14 +1123,14 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
                           }).catch(async function (error) {
                             const bodyerro = {
-                              text: formatBody(`Ops! Ocorreu um erro digite *#* e fale com um atendente!`, contact),
+                              text: formatBody(`¡Ups! Se produjo un error, escriba *#* y hable con un representante de servicio al cliente!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
                           });
                         } else {
                           const bodyfinaliza = {
-                            text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                            text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                           };
                           await sleep(2000)
                           await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -1144,7 +1144,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                         //
                       }).catch(async function (error) {
                         const bodyerro = {
-                          text: formatBody(`Ops! Ocorreu um erro digite *#* e fale com um atendente!`, contact),
+                          text: formatBody(`¡Ups! Se produjo un error, escriba *#* y hable con un representante de servicio al cliente!`, contact),
                         };
                         await sleep(2000)
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
@@ -1166,14 +1166,14 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
             }).catch(async function (error) {
               const body = {
-                text: formatBody(`*Opss!!!!*\nOcorreu um erro! Digite *#* e fale com um *Atendente*!`, contact),
+                text: formatBody(`*¡¡¡Ups!!!*\n¡Ocurrió un error! Escriba *#* y hable con un *Asistente*!`, contact),
               };
               await sleep(2000)
               await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
             });
           } else {
             const body = {
-              text: formatBody(`Este CPF/CNPJ não é válido!\n\nPor favor tente novamente!\nOu digite *#* para voltar ao *Menu Anterior*`, contact),
+              text: formatBody(`¡Este CPF/CNPJ no es válido!\n\n¡Inténtelo de nuevo!\nO escriba *#* para regresar al *Menú anterior*`, contact),
             };
             await sleep(2000)
             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
@@ -1185,7 +1185,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
     }
   }
 
-  if (filaescolhida === "Religue de Confiança" || filaescolhida === "Liberação em Confiança") {
+  if (filaescolhida === "confianza confianza" || filaescolhida === "Liberar en confianza") {
     let cpfcnpj
     cpfcnpj = getBodyMessage(msg);
     cpfcnpj = cpfcnpj.replace(/\./g, '');
@@ -1294,13 +1294,13 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
               if (response.data.type === 'error') {
                 const body = {
-                  text: formatBody(`*Opss!!!!*\nOcorreu um erro! Digite *#* e fale com um *Atendente*!`, contact),
+                  text: formatBody(`*¡¡¡Ups!!!*\n¡Ocurrió un error! Escriba *#* y hable con un *Asistente*!`, contact),
                 };
                 await sleep(2000)
                 await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body);
               } if (response.data.total === 0) {
                 const body = {
-                  text: formatBody(`Cadastro não localizado! *CPF/CNPJ* incorreto ou inválido. Tenta novamente!`, contact),
+                  text: formatBody(`¡Registro no encontrado! *CPF/CNPJ incorrecto o no válido*. Intentar otra vez!`, contact),
                 };
                 try {
                   await sleep(2000)
@@ -1349,12 +1349,12 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                   id_contrato = response.data?.registros[0]?.id;
                   if (status_internet !== 'A') {
                     const bodyPdf = {
-                      text: formatBody(`*${nome}*  a sua conexão esta bloqueada! Vou desbloquear para você.`, contact),
+                      text: formatBody(`*${nome}*  ¡Tu conexión está bloqueada! Lo desbloquearé para ti.`, contact),
                     };
                     await sleep(2000)
                     await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                     const bodyqrcode = {
-                      text: formatBody(`Estou liberando seu acesso. Por favor aguarde!`, contact),
+                      text: formatBody(`Estoy concediendo su acceso. Espere por favor!`, contact),
                     };
                     await sleep(2000)
                     await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
@@ -1404,12 +1404,12 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body_mensagem);
                             const bodyPdf = {
-                              text: formatBody(`Fiz os procedimentos de liberação! Agora aguarde até 5 minutos e veja se sua conexão irá retornar! .\n\nCaso não tenha voltado, retorne o contato e fale com um atendente!`, contact),
+                              text: formatBody(`¡Hice los trámites de liberación! Ahora espera hasta 5 minutos y comprueba si tu conexión vuelve! .\n\nCaso não tenha voltado, retorne o contato e fale com um atendente!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                             const bodyfinaliza = {
-                              text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                              text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -1422,17 +1422,17 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, body_mensagem);
                             const bodyPdf = {
-                              text: formatBody(`Vou precisar que você *retire* seu equipamento da tomada.\n\n*OBS: Somente retire da tomada.* \nAguarde 1 minuto e ligue novamente!`, contact),
+                              text: formatBody(`Necesitaré que *desconectes* tu equipo del enchufe.\n\n*NOTA: Solo desenchufalo del enchufe..* \nAguarde 1 minuto e ligue novamente!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyPdf);
                             const bodyqrcode = {
-                              text: formatBody(`Veja se seu acesso voltou! Caso não tenha voltado retorne o contato e fale com um atendente!`, contact),
+                              text: formatBody(`¡Comprueba si tu acceso ha vuelto! Si no ha regresado, vuelva a ponerse en contacto y hable con un representante de servicio al cliente.!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyqrcode);
                             const bodyfinaliza = {
-                              text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                              text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                             };
                             await sleep(2000)
                             await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -1449,7 +1449,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
 
                       } else {
                         const bodyerro = {
-                          text: formatBody(`Ops! Ocorreu um erro e nao consegui desbloquear!`, contact),
+                          text: formatBody(`¡Ups! Ocurrió un error y no pude desbloquear!`, contact),
                         };
                         await sleep(2000)
                         await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
@@ -1470,19 +1470,19 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                     }).catch(async function (error) {
 
                       const bodyerro = {
-                        text: formatBody(`Ops! Ocorreu um erro digite *#* e fale com um atendente!`, contact),
+                        text: formatBody(`¡Ups! Se produjo un error, escriba *#* y hable con un representante de servicio al cliente!`, contact),
                       };
                       await sleep(2000)
                       await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);
                     });
                   } else {
                     const bodysembloqueio = {
-                      text: formatBody(`Sua Conexão não está bloqueada! Caso esteja com dificuldades de navegação, retorne o contato e fale com um atendente!`, contact),
+                      text: formatBody(`¡Tu conexión no está bloqueada! Si tiene dificultades de navegación, vuelva a ponerse en contacto y hable con un representante de servicio al cliente.!`, contact),
                     };
                     await sleep(2000)
                     await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodysembloqueio);
                     const bodyfinaliza = {
-                      text: formatBody(`Estamos finalizando esta conversa! Caso precise entre em contato conosco!`, contact),
+                      text: formatBody(`¡Estamos terminando esta conversación! Si lo necesita, por favor contáctenos!`, contact),
                     };
                     await sleep(2000)
                     await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyfinaliza);
@@ -1497,7 +1497,7 @@ export const provider = async (ticket: Ticket, msg: proto.IWebMessageInfo, compa
                 }).catch(async function (error) {
 
                   const bodyerro = {
-                    text: formatBody(`Ops! Ocorreu um erro digite *#* e fale com um atendente!`, contact),
+                    text: formatBody(`¡Ups! Se produjo un error, escriba *#* y hable con un representante de servicio al cliente!`, contact),
                   };
                   await sleep(2000)
                   await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, bodyerro);

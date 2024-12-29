@@ -46,7 +46,7 @@ export const mediaUpload = async (
       mediaName: file.originalname
     });
 
-    return res.send({ mensagem: "Arquivo Salvo" });
+    return res.send({ mensagem: "Archivo guardado" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -69,7 +69,7 @@ export const deleteMedia = async (
     queue.mediaPath = null;
     queue.mediaName = null;
     await queue.save();
-    return res.send({ mensagem: "Arquivo excluído" });
+    return res.send({ mensagem: "archivo eliminado" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -94,7 +94,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.emit(`company-${companyId}-queue`, {
-    action: "update",
+    action: "actualizar",
     queue
   });
 
@@ -131,7 +131,7 @@ export const update = async (
 
   const io = getIO();
   io.emit(`company-${companyId}-queue`, {
-    action: "update",
+    action: "actualizar",
     queue
   });
 
@@ -149,7 +149,7 @@ export const remove = async (
 
   const io = getIO();
   io.emit(`company-${companyId}-queue`, {
-    action: "delete",
+    action: "borrar",
     queueId: +queueId
   });
 

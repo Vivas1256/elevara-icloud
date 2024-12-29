@@ -16,7 +16,7 @@ export const ClosedAllOpenTickets = async (companyId: number): Promise<void> => 
     if (currentStatus === 'nps') {
 
       await ticket.update({
-        status: "closed",
+        status: "cerrado",
         //userId: ticket.userId || null,
         lastMessage: body,
         unreadMessages: 0,
@@ -26,7 +26,7 @@ export const ClosedAllOpenTickets = async (companyId: number): Promise<void> => 
     } else if (currentStatus === 'open') {
 
       await ticket.update({
-        status: "closed",
+        status: "cerrado",
         //  userId: ticket.userId || null,
         lastMessage: body,
         unreadMessages: 0,
@@ -36,7 +36,7 @@ export const ClosedAllOpenTickets = async (companyId: number): Promise<void> => 
     } else {
 
       await ticket.update({
-        status: "closed",
+        status: "cerrado",
         //userId: ticket.userId || null,
         unreadMessages: 0
       });
@@ -102,7 +102,7 @@ export const ClosedAllOpenTickets = async (companyId: number): Promise<void> => 
             })
 
             io.to("open").emit(`company-${companyId}-ticket`, {
-              action: "delete",
+              action: "borrar",
               ticketId: showTicket.id
             });
 

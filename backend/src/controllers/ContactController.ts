@@ -80,7 +80,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     name: Yup.string().required(),
     number: Yup.string()
       .required()
-      .matches(/^\d+$/, "Invalid number format. Only numbers is allowed.")
+      .matches(/^\d+$/, "Formato de número no válido. Sólo se permiten números.")
   });
 
   try {
@@ -120,7 +120,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "create",
+    action: "crear",
     contact
   });
 
@@ -147,7 +147,7 @@ export const update = async (
     name: Yup.string(),
     number: Yup.string().matches(
       /^\d+$/,
-      "Invalid number format. Only numbers is allowed."
+      "Formato de número no válido. Sólo se permiten números."
     )
   });
 
@@ -172,7 +172,7 @@ export const update = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "update",
+    action: "actualizar",
     contact
   });
 
@@ -192,11 +192,11 @@ export const remove = async (
 
   const io = getIO();
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "delete",
+    action: "borrar",
     contactId
   });
 
-  return res.status(200).json({ message: "Contact deleted" });
+  return res.status(200).json({ message: "Contacto eliminado" });
 };
 
 export const list = async (req: Request, res: Response): Promise<Response> => {
@@ -218,7 +218,7 @@ export const upload = async (req: Request, res: Response) => {
   const io = getIO();
 
   io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "create",
+    action: "crear",
     records: response
   });
 

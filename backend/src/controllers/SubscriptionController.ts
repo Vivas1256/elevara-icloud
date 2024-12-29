@@ -71,7 +71,7 @@ export const createSubscription = async (
     const updateCompany = await Company.findOne();
 
     if (!updateCompany) {
-      throw new AppError("Company not found", 404);
+      throw new AppError("Empresa no encontrada", 404);
     }
 
 
@@ -105,7 +105,7 @@ export const createSubscription = async (
 
     });
   } catch (error) {
-    throw new AppError("Validation fails", 400);
+    throw new AppError("La validación falla", 400);
   }
 };
 
@@ -119,7 +119,7 @@ export const createWebhook = async (
   });
 
   if (!(await schema.isValid(req.body))) {
-    throw new AppError("Validation fails", 400);
+    throw new AppError("La validación falla", 400);
   }
 
   const { chave, url } = req.body;
