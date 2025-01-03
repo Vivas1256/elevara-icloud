@@ -1,9 +1,9 @@
 import pino from 'pino';
 import moment from 'moment-timezone';
 
-// Função para obter o timestamp com fuso horário
+// Función para obtener el timestamp con la zona horaria del sistema
 const timezoned = () => {
-  return moment().tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
+  return moment().tz(moment.tz.guess()).format('DD-MM-YYYY HH:mm:ss');
 };
 
 const logger = pino({

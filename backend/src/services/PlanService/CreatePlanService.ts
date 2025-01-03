@@ -8,7 +8,7 @@ interface PlanData {
   connections: number;
   queues: number;
   value: number;
-  useCampaigns?: boolean;
+  use Campañas?: boolean;
   useSchedules?: boolean;
   useInternalChat?: boolean;
   useExternalApi?: boolean;
